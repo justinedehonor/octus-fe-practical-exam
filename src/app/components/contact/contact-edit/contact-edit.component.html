@@ -1,0 +1,70 @@
+<div class="card mt-3">
+  <div class="card-body">
+    <form [formGroup]="contact_form">
+      <!-- FULL NAME -->
+      <div class="form-group required row">
+        <label for="fullname" class="col-sm-3 col-form-label">Full Name</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" id="fullname" placeholder="Name" formControlName="name"
+            [ngClass]="{'is-invalid': contact_form.controls['name'].invalid && contact_form.controls['name'].touched}" />
+          <div class="invalid-feedback"
+            *ngIf="contact_form.controls['name'].errors && contact_form.controls['name'].errors['required']">
+            Full Name is required.
+          </div>
+          <div class="invalid-feedback"
+            *ngIf="contact_form.controls['name'].errors && contact_form.controls['name'].errors['pattern']">
+            Invalid name format.
+          </div>
+          <!-- {{ contact_form['name'].value }} -->
+        </div>
+      </div>
+
+      <!-- EMAIL -->
+      <div class="form-group required row">
+        <label for="email" class="col-sm-3 col-form-label">Email</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" id="email" placeholder="Email" formControlName="email"
+            [ngClass]="{'is-invalid': contact_form.controls['email'].invalid && contact_form.controls['email'].touched}" />
+          <div class="invalid-feedback"
+            *ngIf="contact_form.controls['email'].errors && contact_form.controls['email'].errors['required']">
+            Email is required.
+          </div>
+          <div class="invalid-feedback"
+            *ngIf="contact_form.controls['email'].errors && contact_form.controls['email'].errors['email']">
+            Invalid email format.
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTACT NUMBER -->
+      <div class="form-group required row">
+        <label for="contact_no" class="col-sm-3 col-form-label">Telephone</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" id="contact_no" placeholder="Telephone" formControlName="contact_no"
+            [ngClass]="{'is-invalid': contact_form.controls['contact_no'].invalid && contact_form.controls['contact_no'].touched}" />
+          <div class="invalid-feedback"
+            *ngIf="contact_form.controls['contact_no'].errors && contact_form.controls['contact_no'].errors['required']">
+            Telephone is required.
+          </div>
+          <div class="invalid-feedback"
+            *ngIf="contact_form.controls['contact_no'].errors && contact_form.controls['contact_no'].errors['pattern']">
+            Invalid telephone format (e.g. +XX XXXX XXXX).
+          </div>
+        </div>
+      </div>
+
+      <!-- BUTTONS -->
+      <div class="row">
+        <div class="col-sm-12 text-right">
+          <button type="button" class="btn btn-light text-danger btn-sm mr-1" (click)="onCancel()">
+            <i class="fas fa-times"></i> Cancel
+          </button>
+          <button type="button" class="btn btn-success btn-sm" (click)="onSaveContact()">
+            <i class="far fa-save"></i> Save
+          </button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
