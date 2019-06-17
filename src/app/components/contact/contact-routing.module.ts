@@ -7,16 +7,18 @@ import { AuthGuard } from '../../auth-guard.service';
 const contactRoutes: Routes = [
   {
     path: '',
-    component: ContactSearchComponent
+    children: [
+      {
+        path: '', component: ContactSearchComponent
+      },
+      {
+        path: 'new', component: ContactEditComponent
+      },
+      {
+        path: 'edit/:id', canActivate: [AuthGuard], component: ContactEditComponent
+      }
+    ]
   },
-  {
-    path: 'new',
-    component: ContactEditComponent
-  }, {
-    path: 'edit/:id',
-    canActivate: [AuthGuard],
-    component: ContactEditComponent
-  }
 ];
 
 @NgModule({
